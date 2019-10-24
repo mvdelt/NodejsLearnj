@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            window.onload = function(){
+                //소켓을 연결
+                const sockj = io.connect();//요거를 io말고 다른이름으로 하면 안되네?!!! 'io'로 해야함!!! 
+                //소켓 이벤트를 연결
+                sockj.on('send_back_from_server', function(data_from_serverj){
+                    alert(data_from_serverj);
+                });
+                //문서 객체 이벤트를 연결
+                document.getElementById('buttonj').onclick = function(){
+                    //declare var
+                    const cli_Input_Textj = document.getElementById('textj').value;
+                    //send data
+                    sockj.emit('Clickedj', cli_Input_Textj);
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <input type="text" id="textj"/>
+        <input type="button" id="buttonj" value="echo"/>        
+        <h1>Node.js Server jkkkkkk</h1>
+        <p>Clickedj is the best fascinating brain j</p>
+        <p>Clickedj is the best fascinating brain j</p>
+        <p>Clickedj is the best fascinating brain j</p>
+    </body>
+</html>
